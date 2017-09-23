@@ -43,12 +43,26 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.channelsList = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.buttonUpdateChannel = new System.Windows.Forms.Button();
+            this.textBoxCodeChannelEdit = new System.Windows.Forms.TextBox();
+            this.textBoxUrlChannelEdit = new System.Windows.Forms.TextBox();
+            this.textBoxNameChannelEdit = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBoxImageChannel = new System.Windows.Forms.PictureBox();
+            this.NameLabel = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.searchChannelTextBox = new System.Windows.Forms.TextBox();
             this.channelsTable = new System.Windows.Forms.DataGridView();
             this.usersList = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.usersTable = new System.Windows.Forms.DataGridView();
             this.insertChannel = new System.Windows.Forms.TabPage();
+            this.groupImage = new System.Windows.Forms.GroupBox();
+            this.labelImagePreview = new System.Windows.Forms.Label();
+            this.pictureBoxPreviewImage = new System.Windows.Forms.PictureBox();
             this.insertUser = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -58,35 +72,23 @@
             this.label8 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.searchChannelTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.groupImage = new System.Windows.Forms.GroupBox();
-            this.pictureBoxPreviewImage = new System.Windows.Forms.PictureBox();
-            this.labelImagePreview = new System.Windows.Forms.Label();
-            this.pictureBoxImageChannel = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxNameChannelEdit = new System.Windows.Forms.TextBox();
-            this.textBoxUrlChannelEdit = new System.Windows.Forms.TextBox();
-            this.textBoxCodeChannelEdit = new System.Windows.Forms.TextBox();
-            this.buttonUpdateChannel = new System.Windows.Forms.Button();
+            this.labelIdChannel = new System.Windows.Forms.Label();
+            this.buttonDeleteChannel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.channelsList.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImageChannel)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.channelsTable)).BeginInit();
             this.usersList.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
             this.insertChannel.SuspendLayout();
-            this.insertUser.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreviewImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImageChannel)).BeginInit();
+            this.insertUser.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameChannelTextBox
@@ -229,6 +231,95 @@
             this.channelsList.UseVisualStyleBackColor = true;
             this.channelsList.Click += new System.EventHandler(this.channelsList_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.buttonDeleteChannel);
+            this.groupBox5.Controls.Add(this.labelIdChannel);
+            this.groupBox5.Controls.Add(this.buttonUpdateChannel);
+            this.groupBox5.Controls.Add(this.textBoxCodeChannelEdit);
+            this.groupBox5.Controls.Add(this.textBoxUrlChannelEdit);
+            this.groupBox5.Controls.Add(this.textBoxNameChannelEdit);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.pictureBoxImageChannel);
+            this.groupBox5.Controls.Add(this.NameLabel);
+            this.groupBox5.Location = new System.Drawing.Point(399, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(344, 442);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Editar Canal";
+            // 
+            // buttonUpdateChannel
+            // 
+            this.buttonUpdateChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonUpdateChannel.Image")));
+            this.buttonUpdateChannel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonUpdateChannel.Location = new System.Drawing.Point(63, 345);
+            this.buttonUpdateChannel.Name = "buttonUpdateChannel";
+            this.buttonUpdateChannel.Size = new System.Drawing.Size(213, 40);
+            this.buttonUpdateChannel.TabIndex = 8;
+            this.buttonUpdateChannel.Text = "Atualizar Canal";
+            this.buttonUpdateChannel.UseVisualStyleBackColor = true;
+            this.buttonUpdateChannel.Click += new System.EventHandler(this.buttonUpdateChannel_Click);
+            // 
+            // textBoxCodeChannelEdit
+            // 
+            this.textBoxCodeChannelEdit.Location = new System.Drawing.Point(63, 306);
+            this.textBoxCodeChannelEdit.Name = "textBoxCodeChannelEdit";
+            this.textBoxCodeChannelEdit.Size = new System.Drawing.Size(213, 20);
+            this.textBoxCodeChannelEdit.TabIndex = 7;
+            // 
+            // textBoxUrlChannelEdit
+            // 
+            this.textBoxUrlChannelEdit.Location = new System.Drawing.Point(63, 260);
+            this.textBoxUrlChannelEdit.Name = "textBoxUrlChannelEdit";
+            this.textBoxUrlChannelEdit.Size = new System.Drawing.Size(213, 20);
+            this.textBoxUrlChannelEdit.TabIndex = 6;
+            this.textBoxUrlChannelEdit.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBoxNameChannelEdit
+            // 
+            this.textBoxNameChannelEdit.Location = new System.Drawing.Point(63, 213);
+            this.textBoxNameChannelEdit.Name = "textBoxNameChannelEdit";
+            this.textBoxNameChannelEdit.Size = new System.Drawing.Size(213, 20);
+            this.textBoxNameChannelEdit.TabIndex = 5;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 313);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Code";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 267);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Url";
+            this.label9.Click += new System.EventHandler(this.label9_Click_1);
+            // 
+            // pictureBoxImageChannel
+            // 
+            this.pictureBoxImageChannel.Location = new System.Drawing.Point(89, 36);
+            this.pictureBoxImageChannel.Name = "pictureBoxImageChannel";
+            this.pictureBoxImageChannel.Size = new System.Drawing.Size(143, 145);
+            this.pictureBoxImageChannel.TabIndex = 2;
+            this.pictureBoxImageChannel.TabStop = false;
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Location = new System.Drawing.Point(9, 220);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(35, 13);
+            this.NameLabel.TabIndex = 1;
+            this.NameLabel.Text = "Name";
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label5);
@@ -240,6 +331,24 @@
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lista de Canais";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Procurar Canal";
+            // 
+            // searchChannelTextBox
+            // 
+            this.searchChannelTextBox.Location = new System.Drawing.Point(6, 55);
+            this.searchChannelTextBox.Name = "searchChannelTextBox";
+            this.searchChannelTextBox.Size = new System.Drawing.Size(378, 20);
+            this.searchChannelTextBox.TabIndex = 1;
+            this.searchChannelTextBox.TextChanged += new System.EventHandler(this.searchChannelTextBox_TextChanged);
+            this.searchChannelTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchChannelTextBox_KeyUp);
             // 
             // channelsTable
             // 
@@ -291,6 +400,36 @@
             this.insertChannel.Text = "Inserir Canal";
             this.insertChannel.UseVisualStyleBackColor = true;
             this.insertChannel.Click += new System.EventHandler(this.tabPage1_Click_1);
+            // 
+            // groupImage
+            // 
+            this.groupImage.Controls.Add(this.labelImagePreview);
+            this.groupImage.Controls.Add(this.pictureBoxPreviewImage);
+            this.groupImage.Location = new System.Drawing.Point(419, 15);
+            this.groupImage.Name = "groupImage";
+            this.groupImage.Size = new System.Drawing.Size(228, 188);
+            this.groupImage.TabIndex = 6;
+            this.groupImage.TabStop = false;
+            this.groupImage.Text = "Imagem Selecionada";
+            // 
+            // labelImagePreview
+            // 
+            this.labelImagePreview.AutoSize = true;
+            this.labelImagePreview.Location = new System.Drawing.Point(43, 157);
+            this.labelImagePreview.Name = "labelImagePreview";
+            this.labelImagePreview.Size = new System.Drawing.Size(105, 13);
+            this.labelImagePreview.TabIndex = 1;
+            this.labelImagePreview.Text = "Aguardando Imagem";
+            // 
+            // pictureBoxPreviewImage
+            // 
+            this.pictureBoxPreviewImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxPreviewImage.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPreviewImage.Image")));
+            this.pictureBoxPreviewImage.Location = new System.Drawing.Point(46, 30);
+            this.pictureBoxPreviewImage.Name = "pictureBoxPreviewImage";
+            this.pictureBoxPreviewImage.Size = new System.Drawing.Size(132, 124);
+            this.pictureBoxPreviewImage.TabIndex = 0;
+            this.pictureBoxPreviewImage.TabStop = false;
             // 
             // insertUser
             // 
@@ -383,139 +522,27 @@
             this.usernameTextBox.Size = new System.Drawing.Size(240, 20);
             this.usernameTextBox.TabIndex = 1;
             // 
-            // searchChannelTextBox
+            // labelIdChannel
             // 
-            this.searchChannelTextBox.Location = new System.Drawing.Point(6, 55);
-            this.searchChannelTextBox.Name = "searchChannelTextBox";
-            this.searchChannelTextBox.Size = new System.Drawing.Size(260, 20);
-            this.searchChannelTextBox.TabIndex = 1;
-            this.searchChannelTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchChannelTextBox_KeyUp);
+            this.labelIdChannel.AutoSize = true;
+            this.labelIdChannel.Location = new System.Drawing.Point(9, 26);
+            this.labelIdChannel.Name = "labelIdChannel";
+            this.labelIdChannel.Size = new System.Drawing.Size(16, 13);
+            this.labelIdChannel.TabIndex = 9;
+            this.labelIdChannel.Text = "Id";
+            this.labelIdChannel.Click += new System.EventHandler(this.label11_Click);
             // 
-            // label5
+            // buttonDeleteChannel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Procurar Canal";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.buttonUpdateChannel);
-            this.groupBox5.Controls.Add(this.textBoxCodeChannelEdit);
-            this.groupBox5.Controls.Add(this.textBoxUrlChannelEdit);
-            this.groupBox5.Controls.Add(this.textBoxNameChannelEdit);
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.pictureBoxImageChannel);
-            this.groupBox5.Controls.Add(this.NameLabel);
-            this.groupBox5.Location = new System.Drawing.Point(399, 3);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(344, 442);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Editar Canal";
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(9, 220);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(35, 13);
-            this.NameLabel.TabIndex = 1;
-            this.NameLabel.Text = "Name";
-            // 
-            // groupImage
-            // 
-            this.groupImage.Controls.Add(this.labelImagePreview);
-            this.groupImage.Controls.Add(this.pictureBoxPreviewImage);
-            this.groupImage.Location = new System.Drawing.Point(419, 15);
-            this.groupImage.Name = "groupImage";
-            this.groupImage.Size = new System.Drawing.Size(228, 188);
-            this.groupImage.TabIndex = 6;
-            this.groupImage.TabStop = false;
-            this.groupImage.Text = "Imagem Selecionada";
-            // 
-            // pictureBoxPreviewImage
-            // 
-            this.pictureBoxPreviewImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxPreviewImage.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPreviewImage.Image")));
-            this.pictureBoxPreviewImage.Location = new System.Drawing.Point(46, 30);
-            this.pictureBoxPreviewImage.Name = "pictureBoxPreviewImage";
-            this.pictureBoxPreviewImage.Size = new System.Drawing.Size(132, 124);
-            this.pictureBoxPreviewImage.TabIndex = 0;
-            this.pictureBoxPreviewImage.TabStop = false;
-            // 
-            // labelImagePreview
-            // 
-            this.labelImagePreview.AutoSize = true;
-            this.labelImagePreview.Location = new System.Drawing.Point(43, 157);
-            this.labelImagePreview.Name = "labelImagePreview";
-            this.labelImagePreview.Size = new System.Drawing.Size(105, 13);
-            this.labelImagePreview.TabIndex = 1;
-            this.labelImagePreview.Text = "Aguardando Imagem";
-            // 
-            // pictureBoxImageChannel
-            // 
-            this.pictureBoxImageChannel.Location = new System.Drawing.Point(89, 36);
-            this.pictureBoxImageChannel.Name = "pictureBoxImageChannel";
-            this.pictureBoxImageChannel.Size = new System.Drawing.Size(143, 145);
-            this.pictureBoxImageChannel.TabIndex = 2;
-            this.pictureBoxImageChannel.TabStop = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 267);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 13);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Url";
-            this.label9.Click += new System.EventHandler(this.label9_Click_1);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 313);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Code";
-            // 
-            // textBoxNameChannelEdit
-            // 
-            this.textBoxNameChannelEdit.Location = new System.Drawing.Point(63, 213);
-            this.textBoxNameChannelEdit.Name = "textBoxNameChannelEdit";
-            this.textBoxNameChannelEdit.Size = new System.Drawing.Size(213, 20);
-            this.textBoxNameChannelEdit.TabIndex = 5;
-            // 
-            // textBoxUrlChannelEdit
-            // 
-            this.textBoxUrlChannelEdit.Location = new System.Drawing.Point(63, 260);
-            this.textBoxUrlChannelEdit.Name = "textBoxUrlChannelEdit";
-            this.textBoxUrlChannelEdit.Size = new System.Drawing.Size(213, 20);
-            this.textBoxUrlChannelEdit.TabIndex = 6;
-            this.textBoxUrlChannelEdit.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // textBoxCodeChannelEdit
-            // 
-            this.textBoxCodeChannelEdit.Location = new System.Drawing.Point(63, 306);
-            this.textBoxCodeChannelEdit.Name = "textBoxCodeChannelEdit";
-            this.textBoxCodeChannelEdit.Size = new System.Drawing.Size(213, 20);
-            this.textBoxCodeChannelEdit.TabIndex = 7;
-            // 
-            // buttonUpdateChannel
-            // 
-            this.buttonUpdateChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonUpdateChannel.Image")));
-            this.buttonUpdateChannel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonUpdateChannel.Location = new System.Drawing.Point(63, 365);
-            this.buttonUpdateChannel.Name = "buttonUpdateChannel";
-            this.buttonUpdateChannel.Size = new System.Drawing.Size(213, 40);
-            this.buttonUpdateChannel.TabIndex = 8;
-            this.buttonUpdateChannel.Text = "Atualizar Canal";
-            this.buttonUpdateChannel.UseVisualStyleBackColor = true;
-            this.buttonUpdateChannel.Click += new System.EventHandler(this.buttonUpdateChannel_Click);
+            this.buttonDeleteChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonDeleteChannel.Image")));
+            this.buttonDeleteChannel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonDeleteChannel.Location = new System.Drawing.Point(63, 391);
+            this.buttonDeleteChannel.Name = "buttonDeleteChannel";
+            this.buttonDeleteChannel.Size = new System.Drawing.Size(213, 40);
+            this.buttonDeleteChannel.TabIndex = 10;
+            this.buttonDeleteChannel.Text = "Remover Canal";
+            this.buttonDeleteChannel.UseVisualStyleBackColor = true;
+            this.buttonDeleteChannel.Click += new System.EventHandler(this.buttonDeleteChannel_Click);
             // 
             // AdminArea
             // 
@@ -530,6 +557,9 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.channelsList.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImageChannel)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.channelsTable)).EndInit();
@@ -537,15 +567,12 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).EndInit();
             this.insertChannel.ResumeLayout(false);
-            this.insertUser.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupImage.ResumeLayout(false);
             this.groupImage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreviewImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImageChannel)).EndInit();
+            this.insertUser.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -596,5 +623,7 @@
         private System.Windows.Forms.TextBox textBoxCodeChannelEdit;
         private System.Windows.Forms.TextBox textBoxUrlChannelEdit;
         private System.Windows.Forms.Button buttonUpdateChannel;
+        private System.Windows.Forms.Label labelIdChannel;
+        private System.Windows.Forms.Button buttonDeleteChannel;
     }
 }

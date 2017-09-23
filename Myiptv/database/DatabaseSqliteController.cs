@@ -10,20 +10,19 @@ using System.Windows.Forms;
 
 namespace Myiptv.database
 {
-    class DatabaseSqliteController
+    public class DatabaseSqliteController
     {
         private static String myConnection = "Data Source=myiptv.sqlite";
         private static String databaseName = "myiptv.sqlite";
-       
+        public User UserSession { get; set; }
 
 
 
         public void InitializeDatabase()
         {
-            Console.WriteLine("outside");
+            
             if (!File.Exists(databaseName))
             {
-                Console.WriteLine("inside!");
                 SQLiteConnection.CreateFile(databaseName);
                 SQLiteConnection connection = new SQLiteConnection(myConnection);
                 connection.Open();
@@ -62,6 +61,28 @@ namespace Myiptv.database
                 {
                     Console.WriteLine("USERS TABLE$$$$"+ex.Message);
                 }
+            }
+            PopulateTable();
+            
+        }
+
+        public void PopulateTable()
+        {
+            if(SelectAllChannels().Count == 0)
+            {
+                //Stream str =  Myiptv.Properties.Resources.redetv.ToString() ;
+
+                //InsertChannel(new Channel(0, "Sbt", "", "http://www.sbt.com.br/aovivo/", );
+
+               /* Myiptv.Properties.Resources.redetv.Save(ms, Myiptv.Properties.Resources.redetv.RawFormat);
+                InsertChannel(new Channel(0, "Rede TV", "", "http://www.redetv.uol.com.br/aovivo", ms.ToArray()));
+
+                Myiptv.Properties.Resources.adult.Save(ms, Myiptv.Properties.Resources.adult.RawFormat);
+                InsertChannel(new Channel(0, "Adult Tv", "123", "http://faketestpropose.com", ms.ToArray()));*/
+            }
+            if(SelectAllUsers().Count == 0)
+            {
+                InsertUser(new User("admin", "Administrador myiptv", "adm123"));
             }
             
         }
@@ -127,6 +148,63 @@ namespace Myiptv.database
             }
         }
 
+        public bool UpdateChannel(Channel channel)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(myConnection))
+            {
+                connection.Open();
+                using (SQLiteCommand insertSQL = new SQLiteCommand("UPDATE CHANNELS SET NAME=?, CODE=?, URL=? WHERE ID=?", connection))
+                {
+                    insertSQL.Parameters.Add(new SQLiteParameter("NAME", channel.Name));
+                    insertSQL.Parameters.Add(new SQLiteParameter("CODE", channel.Code));
+                    insertSQL.Parameters.Add(new SQLiteParameter("URL", channel.Url));
+                    insertSQL.Parameters.Add("ID", System.Data.DbType.Int32);
+                    insertSQL.Parameters["ID"].Value = channel.Id;
+                    try
+                    {
+                        insertSQL.ExecuteNonQuery();
+                        connection.Close();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        connection.Close();
+                        return false;
+                    }
+
+                }
+
+            }
+        }
+
+        public bool RemoveChannel(int Id)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(myConnection))
+            {
+                connection.Open();
+                using (SQLiteCommand insertSQL = new SQLiteCommand("DELETE FROM CHANNELS WHERE ID=?", connection))
+                {
+                    insertSQL.Parameters.Add("ID", System.Data.DbType.Int32);
+                    insertSQL.Parameters["ID"].Value = Id;
+                    try
+                    {
+                        insertSQL.ExecuteNonQuery();
+                        connection.Close();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        connection.Close();
+                        return false;
+                    }
+
+                }
+
+            }
+        }
+
         public List<User> SelectAllUsers()
         {
             List<User> users = new List<User>();
@@ -146,6 +224,27 @@ namespace Myiptv.database
                 return users;
             }
         }
+
+        public User SelectUserById(string username)
+        {
+            User user = null;
+            using (SQLiteConnection connection = new SQLiteConnection(myConnection))
+            {
+                connection.Open();
+                using (SQLiteCommand read = new SQLiteCommand("SELECT * FROM USERS WHERE USERNAME='"+username+"'", connection))
+                {
+                    using (SQLiteDataReader reader = read.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            user = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                        }
+                    }
+                }
+                return user;
+            }
+        }
+
         public List<Channel> SelectAllChannels()
         {
             List<Channel> channels = new List<Channel>();
@@ -160,6 +259,27 @@ namespace Myiptv.database
                         while (reader.Read())
                         {
                             channels.Add(new Channel(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),  IconByteArray(reader.GetInt32(0))));
+                        }
+                    }
+                }
+                return channels;
+            }
+        }
+
+        public List<Channel> SelectAllGuestChannels()
+        {
+            List<Channel> channels = new List<Channel>();
+
+            using (SQLiteConnection connection = new SQLiteConnection(myConnection))
+            {
+                connection.Open();
+                using (SQLiteCommand read = new SQLiteCommand("SELECT ID, NAME FROM CHANNELS", connection))
+                {
+                    using (SQLiteDataReader reader = read.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            channels.Add(new Channel(reader.GetInt32(0), reader.GetString(1)));
                         }
                     }
                 }

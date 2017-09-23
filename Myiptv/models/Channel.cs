@@ -26,7 +26,11 @@ namespace Myiptv.models
             this.Url = Url;
             this.Icon = Icon;
         }
-
+        public Channel(int Id, string Name)
+        {
+            this.Id = Id;
+            this.Name = Name;
+        }
         public override string ToString()
         {
             return "{Channel: " + Name + ", URL: " + Url + " code: " + Code + "icon }";

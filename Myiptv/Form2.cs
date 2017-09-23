@@ -16,7 +16,7 @@ namespace Myiptv
 {
     public partial class AdminArea : Form
     {
-        private DatabaseSqliteController databaseSqiteController;
+        private DatabaseSqliteController databaseSqliteController;
         public OpenFileDialog openFileDialog { get; set; }
         public AdminArea()
         {
@@ -25,8 +25,8 @@ namespace Myiptv
 
         private void AdminArea_Load(object sender, EventArgs e)
         {
-            databaseSqiteController = new DatabaseSqliteController();
-            channelsTable.DataSource = databaseSqiteController.SelectAllChannels();
+            databaseSqliteController = new DatabaseSqliteController();
+            channelsTable.DataSource = databaseSqliteController.SelectAllChannels();
             
 
         }
@@ -74,7 +74,7 @@ namespace Myiptv
 
             Console.WriteLine(channel.ToString());
 
-            if (databaseSqiteController.InsertChannel(channel))
+            if (databaseSqliteController.InsertChannel(channel))
             {
                 MessageBox.Show("Canal inserido com sucesso!");
             }
@@ -131,7 +131,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
                 user.Name = nameTextBox.Text;
                 user.Username = usernameTextBox.Text;
                 user.Password = passwordTextBox.Text;
-                if(databaseSqiteController.InsertUser(user))
+                if(databaseSqliteController.InsertUser(user))
                 {
                     MessageBox.Show("Usuario inserido com sucesso!");
                 }
@@ -143,7 +143,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
-            Console.WriteLine( databaseSqiteController.SelectAllUsers().ToString());
+            Console.WriteLine( databaseSqliteController.SelectAllUsers().ToString());
 
 
         }
@@ -162,11 +162,11 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         {
             if(tabControl1.SelectedTab == usersList)
             {
-                usersTable.DataSource = databaseSqiteController.SelectAllUsers();
+                usersTable.DataSource = databaseSqliteController.SelectAllUsers();
             }
             else if (tabControl1.SelectedTab == channelsList)
             {
-                channelsTable.DataSource = databaseSqiteController.SelectAllChannels();
+                channelsTable.DataSource = databaseSqliteController.SelectAllChannels();
             }
         }
 
@@ -179,7 +179,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         {
             string searchValue = searchChannelTextBox.Text;
 
-            channelsTable.DataSource = databaseSqiteController.SelectAllChannelsByPatern(searchChannelTextBox.Text);
+            channelsTable.DataSource = databaseSqliteController.SelectAllChannelsByPatern(searchChannelTextBox.Text);
             
         }
 
@@ -187,11 +187,11 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         {
             DataGridViewRow row = channelsTable.Rows[e.RowIndex];
             int id = (int)row.Cells["ID"].Value;
-            Console.WriteLine(id + "id");
-            Channel channelSeleted = databaseSqiteController.SelectChannelsById(id);
+            Channel channelSeleted = databaseSqliteController.SelectChannelsById(id);
             textBoxNameChannelEdit.Text = channelSeleted.Name;
             textBoxUrlChannelEdit.Text = channelSeleted.Url;
             textBoxCodeChannelEdit.Text = channelSeleted.Code;
+            labelIdChannel.Text = channelSeleted.Id+"";
             pictureBoxImageChannel.Image =  ImageHandler.FixedSize( Image.FromStream(new MemoryStream(channelSeleted.Icon)), 128, 128 );
         }
 
@@ -221,6 +221,59 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void buttonUpdateChannel_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(textBoxNameChannelEdit.Text) || String.IsNullOrEmpty(textBoxUrlChannelEdit.Text))
+            {
+                MessageBox.Show("O Nome e a URL nao deve estar nulo", "Erro!",
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Channel channelUpdate = databaseSqliteController.SelectChannelsById(int.Parse(labelIdChannel.Text));
+                channelUpdate.Name = textBoxNameChannelEdit.Text;
+                channelUpdate.Code = textBoxCodeChannelEdit.Text;
+                channelUpdate.Url = textBoxUrlChannelEdit.Text;
+                if (databaseSqliteController.UpdateChannel(channelUpdate))
+                {
+                    MessageBox.Show("Canal Atualizado");
+                }
+                else
+                {
+                    MessageBox.Show("O Canal nao pode ser atualizado!", "Erro!",
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                channelsTable.DataSource = databaseSqliteController.SelectAllChannels();
+            }
+
+
+           
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDeleteChannel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja Mesmo Deletar o Canal? ", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (databaseSqliteController.RemoveChannel(int.Parse(labelIdChannel.Text)))
+                {
+                    MessageBox.Show("Canal Removido com Sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("O Canal nao pode ser Removido!", "Erro!",
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                channelsTable.DataSource = databaseSqliteController.SelectAllChannels();
+
+            }
+            
+        }
+
+        private void searchChannelTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
