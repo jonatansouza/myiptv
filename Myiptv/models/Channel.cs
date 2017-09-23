@@ -18,7 +18,7 @@ namespace Myiptv.models
         {
 
         }
-        public Channel(int Id, string Name, string Code, string Url, byte[] icon)
+        public Channel(int Id, string Name, string Code, string Url, byte[] Icon)
         {
             this.Id = Id;
             this.Name = Name;

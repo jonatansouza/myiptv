@@ -44,6 +44,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.channelsList = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteChannel = new System.Windows.Forms.Button();
+            this.labelIdChannel = new System.Windows.Forms.Label();
             this.buttonUpdateChannel = new System.Windows.Forms.Button();
             this.textBoxCodeChannelEdit = new System.Windows.Forms.TextBox();
             this.textBoxUrlChannelEdit = new System.Windows.Forms.TextBox();
@@ -72,8 +74,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.labelIdChannel = new System.Windows.Forms.Label();
-            this.buttonDeleteChannel = new System.Windows.Forms.Button();
+            this.buttonRemoveUser = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.channelsList.SuspendLayout();
@@ -250,6 +251,28 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Editar Canal";
             // 
+            // buttonDeleteChannel
+            // 
+            this.buttonDeleteChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonDeleteChannel.Image")));
+            this.buttonDeleteChannel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonDeleteChannel.Location = new System.Drawing.Point(63, 391);
+            this.buttonDeleteChannel.Name = "buttonDeleteChannel";
+            this.buttonDeleteChannel.Size = new System.Drawing.Size(213, 40);
+            this.buttonDeleteChannel.TabIndex = 10;
+            this.buttonDeleteChannel.Text = "Remover Canal";
+            this.buttonDeleteChannel.UseVisualStyleBackColor = true;
+            this.buttonDeleteChannel.Click += new System.EventHandler(this.buttonDeleteChannel_Click);
+            // 
+            // labelIdChannel
+            // 
+            this.labelIdChannel.AutoSize = true;
+            this.labelIdChannel.Location = new System.Drawing.Point(9, 26);
+            this.labelIdChannel.Name = "labelIdChannel";
+            this.labelIdChannel.Size = new System.Drawing.Size(16, 13);
+            this.labelIdChannel.TabIndex = 9;
+            this.labelIdChannel.Text = "Id";
+            this.labelIdChannel.Click += new System.EventHandler(this.label11_Click);
+            // 
             // buttonUpdateChannel
             // 
             this.buttonUpdateChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonUpdateChannel.Image")));
@@ -361,6 +384,7 @@
             // 
             // usersList
             // 
+            this.usersList.Controls.Add(this.buttonRemoveUser);
             this.usersList.Controls.Add(this.groupBox3);
             this.usersList.Location = new System.Drawing.Point(4, 22);
             this.usersList.Name = "usersList";
@@ -387,6 +411,7 @@
             this.usersTable.Name = "usersTable";
             this.usersTable.Size = new System.Drawing.Size(544, 387);
             this.usersTable.TabIndex = 1;
+            this.usersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersTable_CellContentClick);
             // 
             // insertChannel
             // 
@@ -522,27 +547,18 @@
             this.usernameTextBox.Size = new System.Drawing.Size(240, 20);
             this.usernameTextBox.TabIndex = 1;
             // 
-            // labelIdChannel
+            // buttonRemoveUser
             // 
-            this.labelIdChannel.AutoSize = true;
-            this.labelIdChannel.Location = new System.Drawing.Point(9, 26);
-            this.labelIdChannel.Name = "labelIdChannel";
-            this.labelIdChannel.Size = new System.Drawing.Size(16, 13);
-            this.labelIdChannel.TabIndex = 9;
-            this.labelIdChannel.Text = "Id";
-            this.labelIdChannel.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // buttonDeleteChannel
-            // 
-            this.buttonDeleteChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonDeleteChannel.Image")));
-            this.buttonDeleteChannel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDeleteChannel.Location = new System.Drawing.Point(63, 391);
-            this.buttonDeleteChannel.Name = "buttonDeleteChannel";
-            this.buttonDeleteChannel.Size = new System.Drawing.Size(213, 40);
-            this.buttonDeleteChannel.TabIndex = 10;
-            this.buttonDeleteChannel.Text = "Remover Canal";
-            this.buttonDeleteChannel.UseVisualStyleBackColor = true;
-            this.buttonDeleteChannel.Click += new System.EventHandler(this.buttonDeleteChannel_Click);
+            this.buttonRemoveUser.Image = ((System.Drawing.Image)(resources.GetObject("buttonRemoveUser.Image")));
+            this.buttonRemoveUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonRemoveUser.Location = new System.Drawing.Point(605, 38);
+            this.buttonRemoveUser.Name = "buttonRemoveUser";
+            this.buttonRemoveUser.Size = new System.Drawing.Size(138, 44);
+            this.buttonRemoveUser.TabIndex = 1;
+            this.buttonRemoveUser.Text = "Remover Usuario";
+            this.buttonRemoveUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonRemoveUser.UseVisualStyleBackColor = true;
+            this.buttonRemoveUser.Click += new System.EventHandler(this.buttonRemoveUser_Click);
             // 
             // AdminArea
             // 
@@ -551,7 +567,7 @@
             this.ClientSize = new System.Drawing.Size(771, 593);
             this.Controls.Add(this.tabControl1);
             this.Name = "AdminArea";
-            this.Text = "Form2";
+            this.Text = "MyIpTv Area Administrativa";
             this.Load += new System.EventHandler(this.AdminArea_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -625,5 +641,6 @@
         private System.Windows.Forms.Button buttonUpdateChannel;
         private System.Windows.Forms.Label labelIdChannel;
         private System.Windows.Forms.Button buttonDeleteChannel;
+        private System.Windows.Forms.Button buttonRemoveUser;
     }
 }

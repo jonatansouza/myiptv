@@ -18,8 +18,9 @@ namespace Myiptv
     {
         private DatabaseSqliteController databaseSqliteController;
         public OpenFileDialog openFileDialog { get; set; }
-        public AdminArea()
+        public AdminArea(DatabaseSqliteController databaseSqliteController)
         {
+            this.databaseSqliteController = databaseSqliteController;
             InitializeComponent();
         }
 
@@ -64,25 +65,48 @@ namespace Myiptv
 
         private void cadastrar_Click(object sender, EventArgs e)
         {
-
-            
-            Channel channel = new Channel();
-            channel.Name = nameChannelTextBox.Text;
-            channel.Url = urlTextBox.Text;
-            channel.Code = codeTextBox.Text;
-            channel.Icon = File.ReadAllBytes(openFileDialog.FileName);
-
-            Console.WriteLine(channel.ToString());
-
-            if (databaseSqliteController.InsertChannel(channel))
+            Uri uriResult;
+            bool result = Uri.TryCreate(urlTextBox.Text, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            if (String.IsNullOrEmpty(nameChannelTextBox.Text) || !result)
             {
-                MessageBox.Show("Canal inserido com sucesso!");
+                MessageBox.Show("O campo nome nao pode estar em branco\ncampo url deve conter uma URL valida (http://exemplo.com)", "Erro!",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Erro na inserção", "Erro!",
-MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Channel channel = new Channel();
+                channel.Name = nameChannelTextBox.Text;
+                channel.Url = urlTextBox.Text;
+                channel.Code = codeTextBox.Text;
+                if (openFileDialog == null || String.IsNullOrEmpty(openFileDialog.FileName))
+                {
+                    MemoryStream stream = new MemoryStream();
+                    Myiptv.Properties.Resources.noicon.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    channel.Icon = stream.ToArray();
+                        
+                }
+                else
+                {
+                    channel.Icon = File.ReadAllBytes(openFileDialog.FileName);
+                }
+                
+
+                Console.WriteLine(channel.ToString());
+
+                if (databaseSqliteController.InsertChannel(channel))
+                {
+                    MessageBox.Show("Canal inserido com sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Erro na inserção", "Erro!",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
+
+            
         }
 
        
@@ -274,6 +298,37 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void searchChannelTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDeleteUser_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonRemoveUser_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = usersTable.Rows[usersTable.CurrentCell.RowIndex];
+            string username = (string)row.Cells["USERNAME"].Value;
+
+            if (MessageBox.Show("Deseja Mesmo Deletar o Usuario " + username + "? ", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (databaseSqliteController.RemoveUser(username))
+                {
+                    MessageBox.Show("usuario " + username + " Removido com Sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("O Usuario nao pode ser Removido!", "Erro!",
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                usersTable.DataSource = databaseSqliteController.SelectAllUsers();
+                   
+            }
+        }
+
+        private void usersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

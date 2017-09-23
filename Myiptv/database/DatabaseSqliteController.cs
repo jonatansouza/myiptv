@@ -70,19 +70,22 @@ namespace Myiptv.database
         {
             if(SelectAllChannels().Count == 0)
             {
-                //Stream str =  Myiptv.Properties.Resources.redetv.ToString() ;
 
-                //InsertChannel(new Channel(0, "Sbt", "", "http://www.sbt.com.br/aovivo/", );
+                MemoryStream stream = new MemoryStream();
+                Myiptv.Properties.Resources.sbt.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                InsertChannel(new Channel(0, "Sbt", "", "http://www.sbt.com.br/aovivo/", stream.ToArray()));
 
-               /* Myiptv.Properties.Resources.redetv.Save(ms, Myiptv.Properties.Resources.redetv.RawFormat);
-                InsertChannel(new Channel(0, "Rede TV", "", "http://www.redetv.uol.com.br/aovivo", ms.ToArray()));
+                stream = new MemoryStream();
+                Myiptv.Properties.Resources.redetv.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                InsertChannel(new Channel(0, "Rede TV", "", "http://www.redetv.uol.com.br/aovivo", stream.ToArray()));
 
-                Myiptv.Properties.Resources.adult.Save(ms, Myiptv.Properties.Resources.adult.RawFormat);
-                InsertChannel(new Channel(0, "Adult Tv", "123", "http://faketestpropose.com", ms.ToArray()));*/
+                stream = new MemoryStream();
+                Myiptv.Properties.Resources.adult.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                InsertChannel(new Channel(0, "Adult Tv", "123", "http://faketestpropose.com", stream.ToArray()));
             }
             if(SelectAllUsers().Count == 0)
             {
-                InsertUser(new User("admin", "Administrador myiptv", "adm123"));
+                InsertUser(new User("admin", "Administrador myiptv", "admin"));
             }
             
         }
@@ -187,6 +190,31 @@ namespace Myiptv.database
                 {
                     insertSQL.Parameters.Add("ID", System.Data.DbType.Int32);
                     insertSQL.Parameters["ID"].Value = Id;
+                    try
+                    {
+                        insertSQL.ExecuteNonQuery();
+                        connection.Close();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        connection.Close();
+                        return false;
+                    }
+
+                }
+
+            }
+        }
+
+        public bool RemoveUser(string username)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(myConnection))
+            {
+                connection.Open();
+                using (SQLiteCommand insertSQL = new SQLiteCommand("DELETE FROM USERS WHERE USERNAME='"+username+"'", connection))
+                {
                     try
                     {
                         insertSQL.ExecuteNonQuery();

@@ -41,7 +41,26 @@ namespace Myiptv
                     databaseSqliteController.UserSession = userSession;
                     this.Close();
                 }
+                else
+                {
+                    MessageBox.Show("Password Invalido!");
+                }
             }
+        }
+
+        private void buttonLogin_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxLoginPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
         }
     }
 }

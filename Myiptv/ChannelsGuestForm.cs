@@ -49,7 +49,7 @@ namespace Myiptv
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AdminArea a = new AdminArea();
+            AdminArea a = new AdminArea(dataBaseSqliteController);
             a.Show();
         }
 
@@ -102,6 +102,7 @@ namespace Myiptv
             buttonLogin.Text = "Login";
             buttonAdminArea.Visible = false;
             labelAdminMode.Visible = false;
+            labelUserSession.Text = "Visitante!";
         }
 
         private void ChannelsForm_Activated(object sender, EventArgs e)
@@ -136,7 +137,7 @@ namespace Myiptv
         private void button1_Click(object sender, EventArgs e)
         {
             Channel guestChannel = dataBaseSqliteController.SelectChannelsById(int.Parse(labelGuestIdChannel.Text));
-            if (String.IsNullOrEmpty(guestChannel.Code))
+            if (!String.IsNullOrEmpty(guestChannel.Code))
             {
 
                 string code = Interaction.InputBox("CANAL PROTEGIDO!\nDigite o Codigo para continuar");
@@ -154,6 +155,12 @@ namespace Myiptv
             {
                 System.Diagnostics.Process.Start(guestChannel.Url);
             }
+        }
+
+        private void buttonAbout_Click(object sender, EventArgs e)
+        {
+            AboutForm a = new AboutForm();
+            a.Show();
         }
     }
 }
